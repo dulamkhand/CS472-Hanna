@@ -1,0 +1,123 @@
+/* Exercise : Float Boxes (by Alex Miller) */
+#outer {
+  border: 2px dashed black;
+  overflow: hidden;
+  padding: 10px;
+}
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  margin: 10px;
+  float: left;
+}
+.break {
+  clear: left;
+}
+
+/* Exercise : Menu (by Alex Miller) */
+ul {
+  background-color: red;
+  padding: 20px;
+  text-align: center;
+}
+
+li {
+  display: inline;
+  border: 1px solid black;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Exercise : Layout2 */
+#container {
+  background-color: lightgray;
+  overflow: hidden;
+  padding: 10px;
+  width: 500px;
+}
+#column1, #column2 {
+  background-color: lightblue;
+  float: right;
+  margin-left: 10px;
+  width: 100px;
+}
+h1 {
+  background-color: yellow;
+}
+
+
+/* Exercise : More Floats (by Morgan Doocy) */
+#a, #b {
+  width: 100px;
+  height: 100px;
+  font: 30pt bold Helvetica, Arial, sans-serif;
+  line-height: 100px;
+  text-align: center;
+}
+#a { background-color: lightblue; }
+#b { background-color: pink; }
+#c { background-color: lightgray; }
+
+#a, #b { float: left; }
+#c { margin-top: 100px; }
+#d {
+  background-color: lightgreen;
+  height: 100px;
+}
+
+/* Grid layout */
+div.container{ 
+  display: grid; 
+  grid-template-columns: 58% 38% 38%; 
+  grid-gap: 1em; 
+}
+
+.one {
+  grid-column: 1 / 3;
+  grid-row: 1 / 1;
+}
+.two { 
+  grid-column: 2 / 3;
+  grid-row: 1 / 1;
+}
+.three {
+  grid-column: 3 / 3;
+  grid-row: 1 / 1;
+}
+.four {
+  grid-column: 2 / 3;
+  grid-row: 2 / 2;
+}
+.five {
+  grid-column: 3 / 3;
+  grid-row: 2 / 2 ;
+}
+
+/* Flexbox */
+html {
+  font-family: sans-serif;
+}
+body {
+  margin: 0;
+}
+header {
+  background: purple;
+  height: 100px;
+}
+h1 {
+  text-align: center;
+  color: white;
+  line-height: 100px;
+  margin: 0;
+}
+article {
+  padding: 10px;
+  margin: 10px;
+  background: aqua;
+}
+
+section {
+  display: flex;
+}
+
