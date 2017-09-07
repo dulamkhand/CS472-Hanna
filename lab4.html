@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+  <link rel='stylesheet' id='css' href='./css/lab4.css' media='all' />
+</head>
+
+<body>
+
+  <header>
+    <h1>Login</h1>
+  </header>
+
+  <article>
+    <form action="#">
+      <div class="container">
+        <label><b>Email address</b></label>
+        <input type="text" placeholder="Enter email" name="uname" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+        <label style="color:gray;font-size:90%;">We'll never share your email with anyone else.</label>
+        <br/>
+        <br/>
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+
+        <input type="checkbox" checked="checked"> Check me out
+        <br/>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </article>
+
+  <footer>Copyright &copy; hanna@mum</footer>
+
+</body>
+
+</html>
