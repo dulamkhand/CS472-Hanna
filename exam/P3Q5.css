@@ -1,0 +1,51 @@
+* {
+    padding: 10px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #ADFAAD;
+    height: 150px;
+}
+
+footer {
+    background: #E98080;
+    height: 150px;
+}
+
+footer.secondary {
+    background: white;
+    padding: 0;
+    height: 60px;
+}
+
+section {
+    display: flex;
+    padding:0;
+}
+
+article {
+    background: #F5D18E;
+    min-height: 300px;
+    margin:5px 0 5px 0;
+}
+
+article.left {
+    background: #FAA1C3;
+    width: 300px;
+    margin-right: 5px;
+}
+
+article.right {
+    background: aqua;
+    width: 300px;
+    margin-left: 5px;
+}
+
+h1 {
+    color: white;
+}
