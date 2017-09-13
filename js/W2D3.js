@@ -99,15 +99,10 @@ var count = (function() {
     }
 })();
 
-document.write(count.add());document.write(",");
-document.write(count.add());document.write(",");
-document.write(count.add());document.write(",");
-
 document.write("add5(): ");
-var add5 = count.make_adder.bind(count, 5);
+var add5 = count.make_adder.bind(null, 5);
 document.write(add5());
 document.write(",");
-var add5 = count.make_adder.bind(count, 5);
 document.write(add5());
 document.write(",");
 document.write(add5());
