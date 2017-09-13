@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 6. Use bootstrap to style your app to appear like the sample.-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Hello Javascript();</h1>
+            <p id="clock"></p>
+        </header>
+
+        <form action="#">
+            <fieldset>
+
+                <div class="form-group">
+                    <label>Student ID</label>
+                    <input type="text" class="form-control" placeholder="Student ID i.e. 985892" name="id" id="id" required pattern="^\d{6}$"
+                    />
+                    <p class="help-block">Your unique student Identification number.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" placeholder="Name" name="name" id="name" required>
+                </div>
+
+                <button type="submit" id="submit" class="btn">Submit</button>
+
+            </fieldset>
+        </form>
+        <br/><br/><br/>
+        
+        <ul id="students-list" class="list-group">
+            <li class="list-group-item active">Students</li>
+        </ul>
+    </div>
+
+    <script>
+        // 1. IIFE - wrap your JS app code inside an IIFE.
+        (function () {
+            // 2. JS Timer - Use the "setInterval" function with an anonymosu callback to implement the ticking clock at the top of the webpage.
+            setInterval(function () { document.getElementById("clock").textContent = new Date(); }, 1000);
+
+            // 4. Store your startup data as a JS array e.g. const students = [ { "000-98-0001": "John" }, {"...":"..."} ];
+            const data = [
+                { "id": "980001", "name": "James" },
+                { "id": "980002", "name": "Anna" },
+                { "id": "980003", "name": "Jeffrey" }
+            ];
+
+            // 3. Unobstrusive Event handler - use the DOM API call, object.addEventListener, to create your event handlers.
+            window.addEventListener("load", function () {
+                data.forEach(function (s) {
+                    const li = document.createElement("li");
+                    li.className = "list-group-item";
+                    li.innerHTML = s.id + " - " + s.name;
+                    document.querySelector("#students-list").appendChild(li);
+                })
+            });
+
+            // 5. Use the DOM API calls, document.createElement(...) & listObjectRef.appendChild(...), to dynamically add new Student data to the List Items on the webpage. 
+            document.querySelector("#submit").addEventListener("click", function () {
+                const id = document.getElementById("id");
+                const name = document.getElementById("name");
+
+                if (id.value == "" || name.value == "") {
+                    return false;
+                }
+
+                const li = document.createElement("li");
+                li.className = "list-group-item";
+                li.innerHTML = id.value + " - " + name.value;
+                document.querySelector("#students-list").appendChild(li);
+
+                id.value = "";
+                name.value = "";
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
