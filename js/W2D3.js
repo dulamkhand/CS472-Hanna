@@ -83,12 +83,13 @@ document.write("<br><br>");
 
 // 8 ------------------------------------------------------------------------
 document.write("8. ");
+
 var count = (function() {
     var counter = 0;
-
     return  {
         make_adder: function(inc) {
-            return counter + inc;
+            //return counter + inc;
+            return counter = counter + inc;
         },
         add: function() {
             return ++counter;
@@ -99,8 +100,11 @@ var count = (function() {
     }
 })();
 
+document.write(count.make_adder(5));
+document.write(count.make_adder(5));
+document.write(count.make_adder(5));
 document.write("add5(): ");
-var add5 = count.make_adder.bind(null, 5);
+var add5 = count.make_adder.bind(count, 5);
 document.write(add5());
 document.write(",");
 document.write(add5());
