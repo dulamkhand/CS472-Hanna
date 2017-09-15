@@ -20,7 +20,7 @@
             <p id="clock"></p>
         </header>
 
-        <form action="#">
+        <form action="#" method="POST" id="form">
             <fieldset>
 
                 <div class="form-group">
@@ -47,41 +47,38 @@
     </div>
 
     <script>
-        (function () {
+        $(document).ready(function() {
             setInterval(function () { 
                 $("#clock").html("Clock is here: " + new Date()); 
             }, 1000);
 
-            const data = [
-                { "id": "980001", "name": "James" },
-                { "id": "980002", "name": "Anna" },
-                { "id": "980003", "name": "Jeffrey" }
-            ];
-
-            $(window).on('load', function () {
+            $.ajax({
+                url: "./data.json",
+                type: "GET",
+                dataType: "json"
+            }).done(function(data) {
                 data.forEach(function (s) {
                     const li = document.createElement("li");
                     li.className = "list-group-item";
-                    li.innerHTML = s.id + " - " + s.name;
+                    li.innerHTML = s.studentId + " - " + s.firstName;
                     $("#students-list").append(li);
                 })
             });
 
-            $("#submit").bind('click', function() {
-                const id = $("#id").val();
-                const name = $("#name").val();
+            $("#form").submit(function(event) {
+                return false;
+            })
 
+            $("#submit").bind('click', function() {
                 const li = document.createElement("li");
                 li.className = "list-group-item";
-                li.innerHTML = id + " - " + name;
+                li.innerHTML = $("#id").val() + " - " + $("#name").val();
                 $("#students-list").append(li);
-
-                $("#id").val("");
-                $("#name").val("");
-                return false;
+                
+                $("#id").val('');
+                $("#name").val('');
             });
-           
-        })();
+        });
     </script>
 
 </body>
