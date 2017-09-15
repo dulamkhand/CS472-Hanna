@@ -100,9 +100,6 @@ var count = (function() {
     }
 })();
 
-document.write(count.make_adder(5));
-document.write(count.make_adder(5));
-document.write(count.make_adder(5));
 document.write("add5(): ");
 var add5 = count.make_adder.bind(count, 5);
 document.write(add5());
