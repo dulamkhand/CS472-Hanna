@@ -25,3 +25,6 @@ redHondaAccord.setMake('Honda');
 redHondaAccord.setColor('red');
 redHondaAccord.setModel('Accord');
 redHondaAccord.drive(200);
+
+
+var obj1 = new FunctionConstructor();

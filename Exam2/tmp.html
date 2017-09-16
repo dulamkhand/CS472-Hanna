@@ -15,11 +15,17 @@
 <body>
 
     <div class="container">
-       
+        <div>
+            <p>asljhsakldj</p>
+        </div>
     </div>
 
     <script>
-               
+        $(document).ready(function() {
+            console.log($("div").css('background-color'));
+            $("<div>").css('background-color', 'blue');
+        });
+
     </script>
 
 </body>
