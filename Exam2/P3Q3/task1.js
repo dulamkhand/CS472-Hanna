@@ -21,10 +21,8 @@ var Car = function(){
     }
 }
 var redHondaAccord = Car();
+redHondaAccord.prototype = Object.create(Car.prototype);
 redHondaAccord.setMake('Honda');
 redHondaAccord.setColor('red');
 redHondaAccord.setModel('Accord');
 redHondaAccord.drive(200);
-
-
-var obj1 = new FunctionConstructor();
