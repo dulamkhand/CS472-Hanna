@@ -24,39 +24,48 @@
 
                 <div class="form-group">
                     <label>Account No</label>
-                    <input type="text" class="form-control" placeholder="01-" name="id" id="id" required pattern="^\d{6}$"
+                    <input type="text" class="form-control" placeholder="01-XXX-XXXX" name="id" id="id" 
+                            required pattern="^01-\d{3}-\d{4}$"
                     />
-                    <p class="help-block">Your unique student Identification number.</p>
+                    <p class="help-block">Your unique account number.</p>
                 </div>
 
                 <div class="form-group">
-                    <label>Name</label>
+                    <label>Customer Name</label>
                     <input type="text" class="form-control" placeholder="Name" name="name" id="name" required>
                 </div>
 
-                <button type="submit" id="submit" class="btn">Submit</button>
+                <div class="form-group">
+                    <label>Type of Account</label>
+                    <select class="form-control" id="type" name="type">
+                        <option value="Checking">Checking</option>
+                        <option value="Savings">Savings</option>
+                    </select> 
+                </div>
+                
+                <button type="submit" id="submit" class="btn">Create New Account</button>
 
             </fieldset>
         </form>
         <br/><br/><br/>
         
-        <ul id="students-list" class="list-group">
-            <li class="list-group-item active">Students</li>
+        <ul id="customers-list" class="list-group">
+            <li class="list-group-item active">List of Customer Accounts</li>
         </ul>
     </div>
 
     <script>
         $(document).ready(function() {
             $.ajax({
-                url: "./data.json",
+                url: "./data/customerData.json",
                 type: "GET",
                 dataType: "json"
             }).done(function(data) {
                 data.forEach(function (s) {
                     const li = document.createElement("li");
                     li.className = "list-group-item";
-                    li.innerHTML = s.studentId + " - " + s.firstName;
-                    $("#students-list").append(li);
+                    li.innerHTML = s.accountNo + " | " + s.customerName + " | " + s.accountType;
+                    $("#customers-list").append(li);
                 })
             });
 
@@ -67,11 +76,8 @@
             $("#submit").bind('click', function() {
                 const li = document.createElement("li");
                 li.className = "list-group-item";
-                li.innerHTML = $("#id").val() + " - " + $("#name").val();
-                $("#students-list").append(li);
-                
-                $("#id").val('');
-                $("#name").val('');
+                li.innerHTML = $("#id").val() + " | " + $("#name").val() + " | " + $("#type").val();
+                $("#customers-list").append(li);
             });
         });
     </script>
