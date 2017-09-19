@@ -18,7 +18,7 @@
                 {{product.name | uppercase}}
                 <em class="right">{{product.price | currency}}</em>
             </h3>
-            <img ng-src="{{product.images[0].full}}" class="left" />
+            <img ng-src="./images/{{product.images[0].full}}" class="left" />
             <p>{{product.description | limitTo:30}}</p>
             <em class="left">{{product.created | date:'MMM dd, yyyy @h:mma'}}</em>
             <button ng-show="product.canPurchase">Add to cart</button>
