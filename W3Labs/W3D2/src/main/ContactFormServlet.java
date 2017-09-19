@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ContactFormServlet
@@ -15,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(description = "ContactFormServlet", urlPatterns = {"/contact"})
 public class ContactFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private int hitCount;
     
     public ContactFormServlet() {
         super();
@@ -24,11 +24,15 @@ public class ContactFormServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		hitCount++;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		hitCount++;
+                // update counter
+                HttpSession session = request.getSession();
+                if(session.isNew()) session.setAttribute("hitCount", 0);
+                int hitCount = (Integer) session.getAttribute("hitCount");
+                session.setAttribute("hitCount", ++hitCount);
+
 		response.setContentType("text/html");
 		response.setBufferSize(8192);
 		String output = this.generateContactForm(request, response);
@@ -42,6 +46,10 @@ public class ContactFormServlet extends HttpServlet {
 	}
 	
 	private String generateContactForm(HttpServletRequest request, HttpServletResponse response) {
+                HttpSession session = request.getSession(true);
+                if(session.isNew()) session.setAttribute("hitCount", 0);
+                int hitCount = (Integer) session.getAttribute("hitCount");
+
 		StringBuilder sb = new StringBuilder();
 		sb.append("<!DOCTYPE html>");
 		sb.append("<html lang='en'>");
@@ -83,7 +91,8 @@ public class ContactFormServlet extends HttpServlet {
 		sb.append("<legend>Customer Contact Form</legend>");
 		
 		// Check if msg exist
-		Object objErrMsgs = request.getAttribute("errMsgs");
+                if(session.isNew()) session.setAttribute("errMsgs", null);
+		Object objErrMsgs = session.getAttribute("errMsgs");
 		if(objErrMsgs != null) {
 			String errorMsgs = (String) objErrMsgs;
 			sb.append("<div><p>");
@@ -202,7 +211,7 @@ public class ContactFormServlet extends HttpServlet {
 		
 		// Display Hit Counts
 		sb.append("<div class=\"container\"><br/>");
-		sb.append("<span class=\"text-muted\">Hit Count for this page: " + this.hitCount +"</span><span style=\"float:right;\" class=\"text-muted\">Total Hit Count for the entire WebApp: --</span>");
+		sb.append("<span class=\"text-muted\">Hit Count for this page: " + hitCount +"</span><span style=\"float:right;\" class=\"text-muted\">Total Hit Count for the entire WebApp: --</span>");
 		sb.append("</div>");		
 		
 		sb.append("<footer class=\"footer\">");

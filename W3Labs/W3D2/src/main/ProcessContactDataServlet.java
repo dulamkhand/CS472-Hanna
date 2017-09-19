@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 public class ProcessContactDataServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private int hitCount;
 
     public ProcessContactDataServlet() {
         super();
@@ -27,16 +26,23 @@ public class ProcessContactDataServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        hitCount++;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        hitCount++;
+        // update counter
+        HttpSession session = request.getSession(true);
+        int hitCount = (Integer) session.getAttribute("hitCount");
+        session.setAttribute("hitCount", ++hitCount);
+
         response.sendRedirect("contact");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        hitCount++;
+        // update counter
+        HttpSession session = request.getSession(true);
+        int hitCount = (Integer) session.getAttribute("hitCount");
+        session.setAttribute("hitCount", ++hitCount);
+
         String missingFieldsMsg = "";
         String customerName = request.getParameter("customerName");
         String gender = request.getParameter("radioGender");
@@ -57,21 +63,18 @@ public class ProcessContactDataServlet extends HttpServlet {
             missingFieldsMsg += "<span style='color:red;'>Message is missing.</span><br/>";
         }
         if (!missingFieldsMsg.equals("")) {
-            request.setAttribute("errMsgs", missingFieldsMsg);
+            //request.setAttribute("errMsgs", missingFieldsMsg);
+            session.setAttribute("errMsgs", missingFieldsMsg);
             // forward back to sender
             RequestDispatcher rd = request.getRequestDispatcher("/contact");
             rd.forward(request, response);
         } else {
-
-            // Create a session object if it is already not created.
-            HttpSession session = request.getSession(true);
-            session.setAttribute("name", customerName);
-            session.setAttribute("gender", gender);
-            session.setAttribute("category", category);
+            session.setAttribute("customerName", customerName);
+            session.setAttribute("radioGender", gender);
+            session.setAttribute("ddlCategory", category);
             session.setAttribute("message", message);
             
-            String redirectUrl = "thankyou?customerName=" + customerName + "&radioGender=" + gender + "&ddlCategory=" + category + "&message=" + message;
-            response.sendRedirect(redirectUrl);
+            response.sendRedirect("thankyou");
         }
     }
 }

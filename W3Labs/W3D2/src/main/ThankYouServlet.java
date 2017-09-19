@@ -26,19 +26,20 @@ public class ThankYouServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-                            
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String customerName = request.getParameter("customerName");
-		String gender = request.getParameter("radioGender");
-		String category = request.getParameter("ddlCategory");
-		String message = request.getParameter("message");
-                // update counter
+		// update counter
                 HttpSession session = request.getSession(true);
+                if(session.isNew()) session.setAttribute("hitCount", 0);
                 int hitCount = (Integer) session.getAttribute("hitCount");
                 session.setAttribute("hitCount", ++hitCount);
 
+                String customerName = (String) session.getAttribute("customerName");
+		String gender = (String) session.getAttribute("radioGender");
+		String category = (String) session.getAttribute("ddlCategory");
+		String message = (String) session.getAttribute("message");
+                
 		response.setContentType("text/html");
 		response.setBufferSize(8192);
 		String output = this.generateThankYouPage(customerName, gender, category, message, hitCount);
