@@ -1,31 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="store">
+<html ng-app="gemStore">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Document</title>
-    <link rel='stylesheet' id='css' href='./bootstrap/css/bootstrap.min.css' media='all' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
     <link rel='stylesheet' id='css' href='./css/style.css' media='all' />
-    <script src="./bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="./js/angular.min.js" type="text/javascript"></script>
-    <script src="./js/app.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
 </head>
 
-<body ng-controller="StoreController as store">
-    <div ng-repeat="product in store.products | orderBy: '-price' | limitTo: 3">
-        <div class="product-row" ng-hide="product.soldOut">
-            <h3>
-                {{product.name | uppercase}}
-                <em class="right">{{product.price | currency}}</em>
-            </h3>
-            <img ng-src="./images/{{product.images[0].full}}" class="left" />
-            <p>{{product.description | limitTo:30}}</p>
-            <em class="left">{{product.created | date:'MMM dd, yyyy @h:mma'}}</em>
-            <button ng-show="product.canPurchase">Add to cart</button>
-            <hr/>
+<body class="list-group" ng-controller="StoreController as store">
+    <!--  Product Container  -->
+    <div class="list-group-item" ng-repeat="product in store.products">
+        <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
+
+        <!-- Image Gallery  -->
+        <div class="gallery" ng-show="product.images.length">
+            <div class="img-wrap">
+                <img ng-src="{{product.images[0]}}" />
+            </div>
+            <ul class="img-thumbnails clearfix">
+                <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+                    <img ng-src="./images/{{image}}" />
+                </li>
+            </ul>
         </div>
-        
+
+        <br clear="all">
+        <section>
+            <ul>
+                <li><a href="" ng-click="tab = 1">Desc</a></li>
+                <li><a href="" ng-click="tab = 2">Spec</a></li>
+                <li><a href="" ng-click="tab = 3">Review</a></li>
+            </ul>
+            {{tab}}
+        </section>
     </div>
+
+    <tab>
+
+    </tab>
 </body>
 
 </html>
