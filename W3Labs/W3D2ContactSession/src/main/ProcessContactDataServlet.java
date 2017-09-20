@@ -1,7 +1,8 @@
 package main;
 
 import java.io.IOException;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -63,7 +64,6 @@ public class ProcessContactDataServlet extends HttpServlet {
             missingFieldsMsg += "<span style='color:red;'>Message is missing.</span><br/>";
         }
         if (!missingFieldsMsg.equals("")) {
-            //request.setAttribute("errMsgs", missingFieldsMsg);
             session.setAttribute("errMsgs", missingFieldsMsg);
             // forward back to sender
             RequestDispatcher rd = request.getRequestDispatcher("/contact");
@@ -74,6 +74,12 @@ public class ProcessContactDataServlet extends HttpServlet {
             session.setAttribute("ddlCategory", category);
             session.setAttribute("message", message);
             
+            // update in session
+            if(session.isNew()) session.setAttribute("data", new ArrayList<ContactMessage>());
+            List<ContactMessage> data = (List<ContactMessage>) session.getAttribute("data");
+            data.add(new ContactMessage(customerName, gender, category, message));
+            session.setAttribute("data", data);
+
             response.sendRedirect("thankyou");
         }
     }
