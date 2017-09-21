@@ -1,8 +1,12 @@
 package main;
 
+import db.MessageDAO;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -69,21 +73,30 @@ public class ProcessContactDataServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/contact");
             rd.forward(request, response);
         } else {
+            // store un session
             session.setAttribute("customerName", customerName);
-            session.setAttribute("radioGender", gender);
-            session.setAttribute("ddlCategory", category);
+            session.setAttribute("gender", gender);
+            session.setAttribute("category", category);
             session.setAttribute("message", message);
             
-            // update in session
+            // update list in session
             if(session.isNew()) session.setAttribute("data", new ArrayList<ContactMessage>());
             List<ContactMessage> data = (List<ContactMessage>) session.getAttribute("data");
             if(data == null || !(data instanceof ArrayList)) data =  new ArrayList<ContactMessage>();
             data.add(new ContactMessage(customerName, gender, category, message));
             session.setAttribute("data", data);
-
             for(ContactMessage d : data) {
                 System.out.println(String.format("%s, %s, %s, %s", d.getName(), 
                         d.getGender(), d.getCategory(), d.getMessage()));
+            }
+            
+            // store in db
+            try {
+                MessageDAO.insert(customerName, gender, category, message);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProcessContactDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ProcessContactDataServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             response.sendRedirect("thankyou.jsp");
         }

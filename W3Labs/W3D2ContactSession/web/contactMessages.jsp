@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="java.time.LocalDate,java.time.format.DateTimeFormatter,javax.servlet.http.HttpSession,java.util.List,java.util.ArrayList,main.ContactMessage" %>
+<%@ page import="db.Message,java.time.LocalDate,java.time.format.DateTimeFormatter,javax.servlet.http.HttpSession,java.util.List,java.util.ArrayList,main.ContactMessage" %>
 
 <!DOCTYPE html>
 <html>
@@ -49,8 +49,8 @@
             <p>
                 <br/>
             <div class="card">
-                <% List<ContactMessage> data = (List<ContactMessage>) session.getAttribute("data"); %>
-                <% for (ContactMessage d : data) {%>
+                <% List<Message> data = (List<Message>) request.getAttribute("messageList"); %>
+                <% for (Message d : data) {%>
                 <div class="card-body">
                     <h4 class="card-title">Name: <%= d.getName()%></h4><br/>
                     <h5 class="card-subtitle mb-2 text-muted">Gender: <%= d.getGender()%></h5><br/>
