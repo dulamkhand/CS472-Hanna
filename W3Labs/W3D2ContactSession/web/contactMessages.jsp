@@ -1,14 +1,14 @@
-<%--
-    Document   : thankyou
-    Created on : Sep 20, 2017, 2:25:44 PM
+<%-- 
+    Document   : tmp
+    Created on : Sep 20, 2017, 6:11:11 PM
     Author     : 985892
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.time.LocalDate,java.time.format.DateTimeFormatter,javax.servlet.http.HttpSession,java.util.List,java.util.ArrayList,main.ContactMessage" %>
 
-<% //HTTPSession session = request.getSession(true); %>
 <!DOCTYPE html>
-<html lang='en'>
+<html>
     <head>
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0', shrink-to-fit=no">
@@ -49,29 +49,28 @@
             <p>
                 <br/>
             <div class="card">
-                <div class="card-header">
-                    <h2>Thank you! Your message has been received as follows:</h2>
-                </div>
-
+                <% List<ContactMessage> data = (List<ContactMessage>) session.getAttribute("data"); %>
+                <% for (ContactMessage d : data) {%>
                 <div class="card-body">
-                    <h4 class="card-title">Name: <%= (String) session.getAttribute("customerName")%></h4><br/>
-                    <h5 class="card-subtitle mb-2 text-muted">Gender: <%= (String) session.getAttribute("gender")%></h5><br/>
-                    <h5 class="card-subtitle mb-2 text-muted">Category: <%= (String) session.getAttribute("category")%></h4><br/>
-                        <p class="card-text">Message: <%= (String) session.getAttribute("message")%></p><br/><br/>
+                    <h4 class="card-title">Name: <%= d.getName()%></h4><br/>
+                    <h5 class="card-subtitle mb-2 text-muted">Gender: <%= d.getGender()%></h5><br/>
+                    <h5 class="card-subtitle mb-2 text-muted">Category: <%= d.getCategory()%></h4><br/>
+                        <p class="card-text">Message: <%= d.getMessage()%></p><br/><br/>
                         <p>Please feel free to <a href="contact" class="card-link">Contact Us</a> again</p>
                 </div>
+                <% }%>
             </div>
         </p>
 
         <div class="container">
             <span class="text-muted">Hit Count for this page: <%= (Integer) session.getAttribute("hitCount")%></span><span style="float:right;" class="text-muted">Total Hit Count for the entire WebApp: --</span>
         </div>		
-
     </div>
     <footer class="footer">
         <div class="container">
             <span class="text-muted">O. Kalu ::: CS472-WAP</span><span style="float:right;" class="text-muted">&copy September 2017</span>
         </div>
-    </footer>      
+    </footer>   
+
 </body>
-</html>	
+</html>

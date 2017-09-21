@@ -77,10 +77,15 @@ public class ProcessContactDataServlet extends HttpServlet {
             // update in session
             if(session.isNew()) session.setAttribute("data", new ArrayList<ContactMessage>());
             List<ContactMessage> data = (List<ContactMessage>) session.getAttribute("data");
+            if(data == null || !(data instanceof ArrayList)) data =  new ArrayList<ContactMessage>();
             data.add(new ContactMessage(customerName, gender, category, message));
             session.setAttribute("data", data);
 
-            response.sendRedirect("thankyou");
+            for(ContactMessage d : data) {
+                System.out.println(String.format("%s, %s, %s, %s", d.getName(), 
+                        d.getGender(), d.getCategory(), d.getMessage()));
+            }
+            response.sendRedirect("thankyou.jsp");
         }
     }
 }
