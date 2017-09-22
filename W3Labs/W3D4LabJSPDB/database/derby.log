@@ -1,0 +1,31 @@
+Fri Sep 22 01:47:18 CDT 2017 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Fri Sep 22 01:49:19 CDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-015e-a857-2b45-ffffa2a6117d 
+on database directory C:\oak\MyMUM\teaching\courses\CS472 - WAP\201709\Homeworks_and_Labs\W3D3_Lab_JSP\solution_workspace\W3D3LabJSPs\WebContent\database\ContactMessagesDB with class loader sun.misc.Launcher$AppClassLoader@60e53b93 
+Loaded from file:/C:/javaplatform/se/8/jdk/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_121-b13
+user.dir=C:\oak\MyMUM\teaching\courses\CS472 - WAP\201709\Homeworks_and_Labs\W3D3_Lab_JSP\solution_workspace\W3D3LabJSPs\WebContent\database
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\oak\MyMUM\teaching\courses\CS472 - WAP\201709\Homeworks_and_Labs\W3D3_Lab_JSP\solution_workspace\W3D3LabJSPs\WebContent\database
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Fri Sep 22 01:49:19 CDT 2017:
+Shutting down instance a816c00e-015e-a857-2b45-ffffa2a6117d on database directory C:\oak\MyMUM\teaching\courses\CS472 - WAP\201709\Homeworks_and_Labs\W3D3_Lab_JSP\solution_workspace\W3D3LabJSPs\WebContent\database\ContactMessagesDB with class loader sun.misc.Launcher$AppClassLoader@60e53b93 
+Fri Sep 22 01:49:19 CDT 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = ContactMessagesDB), (DRDAID = {2}), Database 'ContactMessagesDB' shutdown.
+----------------------------------------------------------------
+Fri Sep 22 01:49:51 CDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance 601a400f-015e-a857-2b45-ffffa2a6117d 
+on database directory C:\oak\MyMUM\teaching\courses\CS472 - WAP\201709\Homeworks_and_Labs\W3D3_Lab_JSP\solution_workspace\W3D3LabJSPs\WebContent\database\ContactMessagesDB with class loader sun.misc.Launcher$AppClassLoader@60e53b93 
+Loaded from file:/C:/javaplatform/se/8/jdk/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_121-b13
+user.dir=C:\oak\MyMUM\teaching\courses\CS472 - WAP\201709\Homeworks_and_Labs\W3D3_Lab_JSP\solution_workspace\W3D3LabJSPs\WebContent\database
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\oak\MyMUM\teaching\courses\CS472 - WAP\201709\Homeworks_and_Labs\W3D3_Lab_JSP\solution_workspace\W3D3LabJSPs\WebContent\database
+Database Class Loader started - derby.database.classpath=''
