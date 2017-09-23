@@ -76,7 +76,7 @@ public class AccountFormServlet extends HttpServlet {
         sb.append("</button>");
         sb.append("</nav>");
         sb.append("<div class=\"container\">");
-        sb.append("<form id=\"formCustomerContact\" method=\"post\" action=\"processContact\">");
+        sb.append("<form id=\"formCustomerContact\" method=\"post\" action=\"#\">");
         sb.append("<fieldset>");
         sb.append("<legend>Bank Account Form</legend>");
 
@@ -88,7 +88,7 @@ public class AccountFormServlet extends HttpServlet {
             sb.append(errorMsgs);
             sb.append("</p></div>");
         }
-        
+
         String accountNo = request.getParameter("accountNo");
         String customerName = request.getParameter("customerName");
         String type = request.getParameter("type");
@@ -99,11 +99,11 @@ public class AccountFormServlet extends HttpServlet {
         if (customerName != null) {
             if (customerName.equals("")) {
                 sb.append("<input type=\"text\" class=\"form-control\" id=\"accountNo\" "
-                        + "name=\"accountNo\" aria-describedby=\"accountNoHelp\" "
+                        + "name=\"accountNo\" aria-describedby=\"accountNoHelp\" pattern=\"01-\\d{3}-\\d{4}\" "
                         + "placeholder=\"01-XXX-XXXX\" title=\"Enter your account number\" >");
             } else {
                 sb.append("<input type=\"text\" class=\"form-control\" id=\"accountNo\" "
-                        + "name=\"accountNo\" aria-describedby=\"accountNoHelp\" "
+                        + "name=\"accountNo\" aria-describedby=\"accountNoHelp\" pattern=\"01-\\d{3}-\\d{4}\" "
                         + "placeholder=\"01-XXX-XXXX\" title=\"Enter your account number\" value=\'" + accountNo + "'>");
             }
         } else {
@@ -112,11 +112,10 @@ public class AccountFormServlet extends HttpServlet {
         }
         sb.append("<small id=\"accountNoHelp\" class=\"form-text text-muted\">Your unique account number.</small>");
         sb.append("</div>");
-        
-        
+
         // CUSTOMER NAME
         sb.append("<div class=\"form-group\">");
-        sb.append("<label for=\"customerName\">*Name:</label>");
+        sb.append("<label for=\"customerName\">Customer Name:</label>");
         if (customerName != null) {
             if (customerName.equals("")) {
                 sb.append("<input type=\"text\" class=\"form-control\" id=\"customerName\" name=\"customerName\" aria-describedby=\"customerNameHelp\" placeholder=\"e.g. John Smith\" title=\"Enter your full name\" >");
@@ -133,30 +132,12 @@ public class AccountFormServlet extends HttpServlet {
         sb.append("  <div class=\"form-group\">");
         sb.append("    <label for=\"type\">Type of Account:</label>");
         sb.append("    <select class=\"form-control\" id=\"type\" name=\"type\">");
-        if (type == null) {
-            sb.append("      <option value=\"null\">Select...</option>");
+        if ("Checking".equals(type)) {
             sb.append("      <option value=\"Checking\">Checking</option>");
-            sb.append("      <option value=\"Saving\">Saving</option>");
+            sb.append("      <option value=\"Savings\">Savings</option>");
         } else {
-            switch (type) {
-                case "null":
-                    sb.append("      <option value=\"null\">Select...</option>");
-                    sb.append("      <option value=\"Checking\">Checking</option>");
-                    sb.append("      <option value=\"Saving\">Saving</option>");
-                    break;
-                case "Checking":
-                    sb.append("      <option value=\"null\">Select...</option>");
-                    sb.append("      <option value=\"Checking\">Checking</option>");
-                    sb.append("      <option value=\"Saving\">Saving</option>");
-                    break;
-                case "Saving":
-                    sb.append("      <option value=\"null\">Select...</option>");
-                    sb.append("      <option value=\"Checking\">Checking</option>");
-                    sb.append("      <option value=\"Saving\">Saving</option>");
-                    break;
-                default:
-                    break;
-            }
+            sb.append("      <option value=\"Checking\">Checking</option>");
+            sb.append("      <option value=\"Savings\">Savings</option>");
         }
         sb.append("   </select>");
         sb.append("  </div>");
@@ -165,17 +146,7 @@ public class AccountFormServlet extends HttpServlet {
         sb.append("</fieldset>");
         sb.append("</form>");
         sb.append("</div>");
-
-        // Display Hit Counts
-        sb.append("<div class=\"container\"><br/>");
-        sb.append("<span class=\"text-muted\">Hit Count for this page: " + this.hitCount + "</span><span style=\"float:right;\" class=\"text-muted\">Total Hit Count for the entire WebApp: --</span>");
-        sb.append("</div>");
-
-        sb.append("<footer class=\"footer\">");
-        sb.append("<div class=\"container\">");
-        sb.append("<span class=\"text-muted\">O. Kalu ::: CS472-WAP</span><span style=\"float:right;\" class=\"text-muted\">&copy September 2017</span>");
-        sb.append("</div>");
-        sb.append("</footer>");
+       
         sb.append("</body>");
         sb.append("</html>");
 
